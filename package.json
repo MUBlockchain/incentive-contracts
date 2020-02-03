@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api-balances": "echo \"Not currently implemented\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,11 @@
   },
   "homepage": "https://github.com/jp4g/incentive-contracts#readme",
   "dependencies": {
+    "@koa/router": "^8.0.6",
+    "@truffle/contract": "^4.1.7",
+    "@truffle/hdwallet-provider": "^1.0.30",
     "dotenv": "^8.2.0",
-    "truffle-hdwallet-provider": "^1.0.17"
+    "koa": "^2.11.0",
+    "web3": "^1.2.6"
   }
 }

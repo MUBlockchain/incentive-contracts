@@ -1,14 +1,22 @@
-const HDWalletProvider = require('truffle-hdwallet-provider')
-require("dotenv").config ()
+const HDWalletProvider = require('@truffle/hdwallet-provider')
+require("dotenv").config()
 
-console.log("UIFHIEUFHIUWEFHIUQEWHFIUWFHDIU: ", process.env.INFURA_API)
 module.exports = {
 
   networks: {
     development: {
-      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_API) },
+      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, 'http://0.0.0.0:8545') },
+      network_id: "*",
+    },
+    ropsten: {
+      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, 'https://ropsten.' + process.env.INFURA) },
       network_id: "3",
-    }  
+    },
+    rinkeby: {
+      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, 'https://rinkeby.' + process.env.INFURA) },
+      network_id: "4",
+    }
+     
   },
   compilers: {
     solc: {
