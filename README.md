@@ -10,7 +10,7 @@ ToDo:
 
 ## SMART CONTRACT SUITE
 
-This repository was initialized by truffle, and has the correct configuration file to deploy to an MUBC-owned infura endpoint. You must add a '.env' file with the following variables to get functionality: { MNEMONIC= word1... word12, INFURA_RINKEBY=https://rinkeby.infura.io/...}. 
+This repository was initialized by truffle, and has the correct configuration file to deploy to an MUBC-owned infura endpoint. You must add a '.env' file with the following variables to get functionality: { MNEMONIC= word1... word12, INFURA_RINKEBY=infura.io/...}. 
 
 Deploy the program with 'truffle migrate'. Once migrations finish, grab the MUBCToken contract address and add it to the .env file as { RINKEBY_ADDRESS=0x49..a3}
 
