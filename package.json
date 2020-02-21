@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx truffle test tests/test",
     "api-balances": "echo \"Not currently implemented\" && exit 1"
   },
   "repository": {
@@ -22,10 +22,19 @@
   "homepage": "https://github.com/jp4g/incentive-contracts#readme",
   "dependencies": {
     "@koa/router": "^8.0.6",
+    "@openzeppelin/test-environment": "^0.1.3",
+    "@openzeppelin/test-helpers": "^0.5.4",
     "@truffle/contract": "^4.1.7",
     "@truffle/hdwallet-provider": "^1.0.30",
+    "chai": "^4.2.0",
     "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
     "koa": "^2.11.0",
+    "mocha": "^7.0.1",
     "web3": "^1.2.6"
+  },
+  "resolutions": {
+    "eth-lib/keccakjs/sha3": "^1.2.3",
+    "web3/web3-eth/web3-eth-accounts/scrypt.js": "^0.3.0"
   }
 }
