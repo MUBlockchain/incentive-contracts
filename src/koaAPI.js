@@ -1,13 +1,7 @@
 require('dotenv').config()
 
-let TruffleContract = require("@truffle/contract")
-let HDWalletProvider = require("@truffle/hdwallet-provider")
-let provider = new HDWalletProvider(process.env.MNEMONIC, 'https://rinkeby.' + process.env.INFURA)
-let abi = require('./build/contracts/MUBCToken.json')
-let contract = TruffleContract(abi)
-contract.setProvider(provider)
-let instance;
 
+ 
 let accounts = [
     'gilcrejp',
     'cookepf',

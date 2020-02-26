@@ -1,0 +1,71 @@
+[
+    [
+        {
+            "uniqueID": "gilcrejp",
+            "name": "Jack Gilcrest"
+        },
+        {
+            "uniqueID": "cookepf",
+            "name": "Peter Cooke"
+        },
+        {
+            "uniqueID": "overbetn",
+            "name": "Torsten Overbeck"
+        },
+        {
+            "uniqueID": "dearthjd3",
+            "name": "Jake Dearth"
+        },
+        {
+            "uniqueID": "stanam",
+            "name": "Alex Stan"
+        },
+        {
+            "uniqueID": "bartkoas",
+            "name": "Alexandra Bartkoske"
+        },
+        {
+            "uniqueID": "blackba2",
+            "name": "Allie Blackburn"
+        },
+        {
+            "uniqueID": "grothsd",
+            "name": "Sam Groth"
+        },
+        {
+            "uniqueID": "czajkaat",
+            "name": "Adrian Czajka"
+        },
+        {
+            "uniqueID": "bargera2",
+            "name": "Ashton Barger"
+        }
+    ],
+
+    [
+        {
+            "description": "MUBC T-Shirts",
+            "fungible": false,
+            "quantity": 50,
+            "cost": 20
+        },
+        {
+            "description": "Voice of Blockchain 2020 Ticket",
+            "fungible": false,
+            "quantity": 3,
+            "cost": 50
+        },
+        {
+            "description": "Social Media Endorsement",
+            "fungible": true,
+            "quantity": 0,
+            "cost": 25
+        },
+        {
+            "description": "All expenses paid ticket to Cincinnati Blockchain Implementations Conference 2020",
+            "fungible": true,
+            "quantity": 0,
+            "cost": 10
+        }
+    ]
+]
