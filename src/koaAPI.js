@@ -2,30 +2,7 @@ require('dotenv').config()
 
 
  
-let accounts = [
-    'gilcrejp',
-    'cookepf',
-    'overbetn',
-    'bargera2',
-    'dearthjd3',
-    'stanam',
-    'bartkoas',
-    'blackba2',
-    'grothsd',
-    'czajkaat'
-]
-let names = [
-    'Jack Gilcrest',
-    'Peter Cooke',
-    'Torsten Overbeck',
-    'Ashton Barger',
-    'Jake Dearth',
-    'Alex Stan',
-    'Alexandra Bartkoske',
-    'Allie Blackburn',
-    'Sam Groth',
-    'Adrian Czajka'
-]
+
 
 /**
  * Initialize smart contract

@@ -23,24 +23,26 @@ exports.dummyData = async (instance, cron) => {
 }
 
 dummyUsers = async (instance, users, cron) => {
-    for (let i = 0; i < users.length; i++) {
-        let uuid = await instance.uuid(users[i].uniqueID)
-        if(uuid.toNumber() == 0)
+    let serial = await instance.uuidSerial()
+    if (serial.toNumber == 0) {
+        console.log('Creating fake users')
+        for (let i = 0; i < users.length; i++)
             await instance.register(users[i].uniqueID, users[i].name, 2, {from: cron}) //2 = exec role
     }
 }
 
 dummyItems = async (instance, items, cron) => {
     let serial = await instance.itemSerial()
-    if(serial.toNumber < 1) {
+    if(serial.toNumber() == 0) {
+        console.log('Creating fake items')
         for (let i = 0; i < items.length; i++) 
             await instance.listItem(items[i].description, items[i].fungibile, items[i].quantity, items[i].cost, {from: cron})
     }
 }
 
 module.exports.randomAirdrop = async (instance, cron) => {
+    console.log('Randomly minting to all users on network')
     let serial = (await instance.uuidSerial()).toNumber()
     for (let i = 1; i <= serial; i++)
-        await instance.mint(i, (Math.floor(Math.random() * 10)), 1, {from: cron})
+        await instance.mint(i, (Math.floor(Math.random() * 1000)), 1, {from: cron})
 }
-

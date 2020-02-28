@@ -1,24 +1,11 @@
-# MUBC INCENTIVE TOKEN
-By: Miami University Blockchain Club
+Note: build is included to allow a connection to the smart contract with little difficulty between different hosts running this client. This is not secure, but we can always roll back the chain!
 
-Incentive system for arbitrary academic club operations. Using bounties, tokens, and an item shop, we bootstrap an economy on which we can build on. 
+You must have the INFURA slug ('infura.io/...') and the wallet MNEMONIC ('word0... word11') to run the api yourself.
+Your wallet must be the mnemonic of the CRON/ deployer. This build is configured for Rinkeby, as stated above.
 
-ToDo:
- - Smart Contract Unit Testing
- - React Native App on iOS and Android
- - Web App integration with static mubc.io
+# Run
+run 'npm run api' to begin the service. Wait until the console prints 'API Initialized' to make requests.
+See https://docs.google.com/document/d/1z3q08ALWsdC4yl8huuMAbYBJhkxiRYW4L34EAPD08-k/edit?usp=sharing for poor but complete documentation of queries. 
 
-## SMART CONTRACT SUITE
 
-This repository was initialized by truffle, and has the correct configuration file to deploy to an MUBC-owned infura endpoint. You must add a '.env' file with the following variables to get functionality: { MNEMONIC= word1... word12, INFURA_RINKEBY=infura.io/...}. 
-
-Deploy the program with 'truffle migrate'. Once migrations finish, grab the MUBCToken contract address and add it to the .env file as { RINKEBY_ADDRESS=0x49..a3}
-
-The API includes all current testing. 
-
-## API
-
-Once the above has been completed, run 'node koaAPI.js'. This will run a script that will do 3 things:
- 1. Checks to see if the example users are registered, and registers them if they are not
- 2. Mints each account a random 0-9 new MUBC token
- 3. Runs a Koa server on port 3000 where requests can be made (i.e. http://x.x.x.x:3000/api/balance?uniqueid=[Miami's Unique ID assigned to students here])
+## There is no user authentication, JWT is in our stack don't @ me

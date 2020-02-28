@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npx truffle test tests/test",
-    "api-balances": "echo \"Not currently implemented\" && exit 1"
+    "api": "node src/api.js"
   },
   "repository": {
     "type": "git",
