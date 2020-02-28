@@ -4105,7 +4105,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-28T05:26:05.287Z",
+  "updatedAt": "2020-02-28T06:12:41.646Z",
   "devdoc": {
     "methods": {
       "flipBreaker(uint256)": {

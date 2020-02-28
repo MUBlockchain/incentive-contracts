@@ -24,7 +24,7 @@ exports.dummyData = async (instance, cron) => {
 
 dummyUsers = async (instance, users, cron) => {
     let serial = await instance.uuidSerial()
-    if (serial.toNumber == 0) {
+    if (serial.toNumber() == 0) {
         console.log('Creating fake users')
         for (let i = 0; i < users.length; i++)
             await instance.register(users[i].uniqueID, users[i].name, 2, {from: cron}) //2 = exec role

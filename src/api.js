@@ -213,7 +213,7 @@ let initContract = async (mint) => {
 
 let init = async () => {
     console.log("Running MUBCToken API Service")
-    await initContract(false)
+    await initContract(true)
     console.log("Contract Initialized")
     driver = new MUBCItemShopDriver(this.instance)
     console.log("Driver Initialized")
