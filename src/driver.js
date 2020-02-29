@@ -47,13 +47,21 @@ class MUBCItemShopDriver {
     async activeSerial() {
         return (await this.contract.activeSerial()).toNumber()
     }
-    
-    async activeItems() {
+
+    async activeIndex() {
         let active = []
         let serial = await this.itemSerial()
         for (let i = 1; i <= serial; i++)
             active[i-1] = await this.contract.activeItems(i)
         return active.map(i => i.toNumber())
+    }
+
+    async activeItems() {
+        let index = await this.activeIndex()
+        let active = []
+        for (let i = 0; i < index.length; i++) 
+            active[i] = await this.itemProfile(i+1)
+        return active
     }
     
     async itemProfile(_serial) {

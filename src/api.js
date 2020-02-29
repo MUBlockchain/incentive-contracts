@@ -129,6 +129,20 @@ let routes = () => {
         }
     })
 
+    this.router.get('/api/item/activeindex', async (ctx) => {
+        try {
+            let active = await driver.activeIndex()
+            ctx.body = {
+                "active": active
+            }
+        } catch (err) {
+            ctx.response.status = 500
+            ctx.body = {
+                "error": err.message
+            }
+        }
+    })
+
     this.router.get('/api/item/:serial/profile', async (ctx) => {
         try {
             let item = await driver.itemProfile(ctx.params.serial)
@@ -213,7 +227,7 @@ let initContract = async (mint) => {
 
 let init = async () => {
     console.log("Running MUBCToken API Service")
-    await initContract(true)
+    await initContract(false)
     console.log("Contract Initialized")
     driver = new MUBCItemShopDriver(this.instance)
     console.log("Driver Initialized")
