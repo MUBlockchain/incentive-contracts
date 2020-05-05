@@ -1,7 +1,7 @@
 require('dotenv').config()
 let TruffleContract = require("@truffle/contract")
 let HDWalletProvider = require("@truffle/hdwallet-provider")
-let abi = require('../build/contracts/MUBCItemShop.json')
+let abi = require('../build/contracts/MUBCItems.json')
 let dummy_data = require('./dummy_data.json')
 
 exports.provider = () => { return new HDWalletProvider(process.env.MNEMONIC, 'https://rinkeby.' + process.env.INFURA) }
@@ -36,7 +36,7 @@ dummyItems = async (instance, items, cron) => {
     if(serial.toNumber() == 0) {
         console.log('Creating fake items')
         for (let i = 0; i < items.length; i++) 
-            await instance.listItem(items[i].description, items[i].fungibile, items[i].quantity, items[i].cost, {from: cron})
+            await instance.listItem(items[i].description, items[i].quantity, items[i].cost, {from: cron})
     }
 }
 

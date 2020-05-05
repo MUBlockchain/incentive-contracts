@@ -1,6 +1,6 @@
 let { expect } = require('chai')
 let { BN, expectEvent, expectRevert } = require('@openzeppelin/test-helpers')
-let MUBCToken = artifacts.require('./MUBCItemShop')
+let MUBCToken = artifacts.require('./MUBCItems')
 
 /**
  * MUBC Incentive Token Core Smart Contract Testing

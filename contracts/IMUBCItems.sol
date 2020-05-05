@@ -1,6 +1,6 @@
  pragma solidity >= 0.4.0 < 0.7.0;
 
- abstract contract IMUBCItemShop {
+ abstract contract IMUBCItems {
 
     event ItemListed(uint itemID);
     event ItemPurchased(uint itemID, uint uuid);
@@ -9,7 +9,6 @@
     struct Item {
         uint itemID;
         string description;
-        bool fungible;
         uint quantity;
         uint cost;
         bool active;
@@ -27,14 +26,12 @@
      * @dev modifier onlyCron
      * List a new item on the MUBC shop
      * @param _description string: a short description of the item being offered for purchase
-     * @param _fungible bool: true if item can be infinitely purchased, false otherwise
-     * @param _quantity uint: number of times this item can be purchased. if fungible, set value to 0
+     * @param _quantity uint: number of times this item can be purchased.
      * @param _cost uint: how many incentive tokens must be burned to purchase this item
      * @return _itemID uint: the itemSerial given to the newly listed item
      **/
     function listItem(
         string memory _description,
-        bool _fungible,
         uint _quantity,
         uint _cost
         ) public virtual returns (uint _itemID);
@@ -60,19 +57,17 @@
      **/
     function getActiveItems() public virtual view returns (uint[] memory _itemIDs);
 
-       /**
+    /**
      * Return the data associated with an item
      * @param _id uint: the itemID being queried
      * @return _description string: the description of the item and it's properties/ entitlements if bought
-     * @return _fungible bool: true if the item is infinite, and false otherwise
-     * @return _quantity uint: the number of times this item can be purchased. If fungible, returns 0
+     * @return _quantity uint: the number of times this item can be purchased.
      * @return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase
      * @return _active bool: true if the item is open for interaction and false if it is permanently locked
      * @return _purchasers uint[]: array of userIDs that purchased this item
      **/
     function itemProfile(uint _id) public virtual view returns (
         string memory _description,
-        bool _fungible,
         uint _quantity,
         uint _cost,
         bool _active,

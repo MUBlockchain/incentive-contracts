@@ -29,8 +29,11 @@
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
+    "google-auth-library": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
     "mocha": "^7.0.1",
+    "mysql2": "^2.1.0",
     "web3": "^1.2.6"
   },
   "resolutions": {

@@ -1,5 +1,5 @@
 {
-  "contractName": "IMUBCItemShop",
+  "contractName": "IMUBCItems",
   "abi": [
     {
       "anonymous": false,
@@ -99,11 +99,6 @@
           "type": "string"
         },
         {
-          "internalType": "bool",
-          "name": "fungible",
-          "type": "bool"
-        },
-        {
           "internalType": "uint256",
           "name": "quantity",
           "type": "uint256"
@@ -146,11 +141,6 @@
           "internalType": "string",
           "name": "_description",
           "type": "string"
-        },
-        {
-          "internalType": "bool",
-          "name": "_fungible",
-          "type": "bool"
         },
         {
           "internalType": "uint256",
@@ -234,11 +224,6 @@
           "type": "string"
         },
         {
-          "internalType": "bool",
-          "name": "_fungible",
-          "type": "bool"
-        },
-        {
           "internalType": "uint256",
           "name": "_quantity",
           "type": "uint256"
@@ -263,25 +248,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"}],\"name\":\"ItemDelisted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"}],\"name\":\"ItemListed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"uuid\",\"type\":\"uint256\"}],\"name\":\"ItemPurchased\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"activeItems\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"activeSerial\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"}],\"name\":\"delistItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getActiveItems\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_itemIDs\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"itemProfile\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_fungible\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cost\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"_active\",\"type\":\"bool\"},{\"internalType\":\"uint256[]\",\"name\":\"_purchasers\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"itemRegistry\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"fungible\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"activeIndex\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"itemSerial\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_fungible\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cost\",\"type\":\"uint256\"}],\"name\":\"listItem\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_as\",\"type\":\"uint256\"}],\"name\":\"purchaseItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"delistItem(uint256)\":{\"details\":\"modifier onlyCron Permanently retire an item from the shop\",\"params\":{\"_itemID\":\"uint: the itemID of the Item being toggled as inactive*\"}},\"itemProfile(uint256)\":{\"params\":{\"_id\":\"uint: the itemID being queried\"},\"returns\":{\"_active\":\"bool: true if the item is open for interaction and false if it is permanently locked\",\"_cost\":\"uint: the number of MUBC tokens that are burned from the user's account upon purchase\",\"_description\":\"string: the description of the item and it's properties/ entitlements if bought\",\"_fungible\":\"bool: true if the item is infinite, and false otherwise\",\"_purchasers\":\"uint[]: array of userIDs that purchased this item*\",\"_quantity\":\"uint: the number of times this item can be purchased. If fungible, returns 0\"}},\"listItem(string,bool,uint256,uint256)\":{\"details\":\"modifier onlyCron List a new item on the MUBC shop\",\"params\":{\"_cost\":\"uint: how many incentive tokens must be burned to purchase this item\",\"_description\":\"string: a short description of the item being offered for purchase\",\"_fungible\":\"bool: true if item can be infinitely purchased, false otherwise\",\"_quantity\":\"uint: number of times this item can be purchased. if fungible, set value to 0\"},\"returns\":{\"_itemID\":\"uint: the itemSerial given to the newly listed item*\"}},\"purchaseItem(uint256,uint256)\":{\"details\":\"modifier onlyCron Spend MUBC tokens to purchase an item. Items should not be purchasable twice.\",\"params\":{\"_as\":\"uint: userID of the user purchasing the item*\",\"_itemID\":\"uint: the itemID of the item being purchased\"}}}},\"userdoc\":{\"methods\":{\"getActiveItems()\":{\"notice\":\"Get an array of all the currently active items in the incentive network\"},\"itemProfile(uint256)\":{\"notice\":\"Return the data associated with an item\"}}}},\"settings\":{\"compilationTarget\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCItemShop.sol\":\"IMUBCItemShop\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCItemShop.sol\":{\"keccak256\":\"0x7fc9fd37a929d6d6a45710348bcd4ebe9c93dad18a035b8ddfa28cb4091be62f\",\"urls\":[\"bzz-raw://a5a0c3d0992c7e17769b259a5bb627235649469e345c6398fc8fafff91b0e65e\",\"dweb:/ipfs/QmeVq4GAi64yRPjQ5LhgkpkM161wnYAxSwwjdqdYhYvwsP\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"}],\"name\":\"ItemDelisted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"}],\"name\":\"ItemListed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"uuid\",\"type\":\"uint256\"}],\"name\":\"ItemPurchased\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"activeItems\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"activeSerial\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"}],\"name\":\"delistItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getActiveItems\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"_itemIDs\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"itemProfile\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cost\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"_active\",\"type\":\"bool\"},{\"internalType\":\"uint256[]\",\"name\":\"_purchasers\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"itemRegistry\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"activeIndex\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"itemSerial\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_cost\",\"type\":\"uint256\"}],\"name\":\"listItem\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_itemID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_as\",\"type\":\"uint256\"}],\"name\":\"purchaseItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"delistItem(uint256)\":{\"details\":\"modifier onlyCron Permanently retire an item from the shop\",\"params\":{\"_itemID\":\"uint: the itemID of the Item being toggled as inactive*\"}},\"itemProfile(uint256)\":{\"params\":{\"_id\":\"uint: the itemID being queried\"},\"returns\":{\"_active\":\"bool: true if the item is open for interaction and false if it is permanently locked\",\"_cost\":\"uint: the number of MUBC tokens that are burned from the user's account upon purchase\",\"_description\":\"string: the description of the item and it's properties/ entitlements if bought\",\"_purchasers\":\"uint[]: array of userIDs that purchased this item*\",\"_quantity\":\"uint: the number of times this item can be purchased.\"}},\"listItem(string,uint256,uint256)\":{\"details\":\"modifier onlyCron List a new item on the MUBC shop\",\"params\":{\"_cost\":\"uint: how many incentive tokens must be burned to purchase this item\",\"_description\":\"string: a short description of the item being offered for purchase\",\"_quantity\":\"uint: number of times this item can be purchased.\"},\"returns\":{\"_itemID\":\"uint: the itemSerial given to the newly listed item*\"}},\"purchaseItem(uint256,uint256)\":{\"details\":\"modifier onlyCron Spend MUBC tokens to purchase an item. Items should not be purchasable twice.\",\"params\":{\"_as\":\"uint: userID of the user purchasing the item*\",\"_itemID\":\"uint: the itemID of the item being purchased\"}}}},\"userdoc\":{\"methods\":{\"getActiveItems()\":{\"notice\":\"Get an array of all the currently active items in the incentive network\"},\"itemProfile(uint256)\":{\"notice\":\"Return the data associated with an item\"}}}},\"settings\":{\"compilationTarget\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCItems.sol\":\"IMUBCItems\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCItems.sol\":{\"keccak256\":\"0x3195f8df881a6ed002de81dc83660acc684a215558f0655be76367280e00af36\",\"urls\":[\"bzz-raw://a2e44881dae05f8e0b1b9545f1ae1f4a765d5d04e24d2b94d2275dbc35296ba7\",\"dweb:/ipfs/QmZKQtT4wynpBdNMfSEcfq7D2u8ZDuEx23yjZoYKZh558f\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": " pragma solidity >= 0.4.0 < 0.7.0;\n\n abstract contract IMUBCItemShop {\n\n    event ItemListed(uint itemID);\n    event ItemPurchased(uint itemID, uint uuid);\n    event ItemDelisted(uint itemID);\n\n    struct Item {\n        uint itemID;\n        string description;\n        bool fungible;\n        uint quantity;\n        uint cost;\n        bool active;\n        uint activeIndex;\n        mapping(uint => bool) purchases;\n        uint[] purchasers;\n    }\n\n    mapping(uint => Item) public itemRegistry;\n    mapping(uint => uint) public activeItems;\n    uint public itemSerial;\n    uint public activeSerial;\n\n    /**\n     * @dev modifier onlyCron\n     * List a new item on the MUBC shop\n     * @param _description string: a short description of the item being offered for purchase\n     * @param _fungible bool: true if item can be infinitely purchased, false otherwise\n     * @param _quantity uint: number of times this item can be purchased. if fungible, set value to 0\n     * @param _cost uint: how many incentive tokens must be burned to purchase this item\n     * @return _itemID uint: the itemSerial given to the newly listed item\n     **/\n    function listItem(\n        string memory _description,\n        bool _fungible,\n        uint _quantity,\n        uint _cost\n        ) public virtual returns (uint _itemID);\n    \n    /**\n     * @dev modifier onlyCron\n     * Permanently retire an item from the shop\n     * @param _itemID uint: the itemID of the Item being toggled as inactive\n     **/\n    function delistItem(uint _itemID) public virtual; \n    \n    /**\n     * @dev modifier onlyCron\n     * Spend MUBC tokens to purchase an item. Items should not be purchasable twice.\n     * @param _itemID uint: the itemID of the item being purchased\n     * @param _as uint: userID of the user purchasing the item\n     **/\n    function purchaseItem(uint _itemID, uint _as) public virtual;\n\n    /**\n     * Get an array of all the currently active items in the incentive network\n     * @return _itemIDs uint[]: array of all items currently marked active\n     **/\n    function getActiveItems() public virtual view returns (uint[] memory _itemIDs);\n\n       /**\n     * Return the data associated with an item\n     * @param _id uint: the itemID being queried\n     * @return _description string: the description of the item and it's properties/ entitlements if bought\n     * @return _fungible bool: true if the item is infinite, and false otherwise\n     * @return _quantity uint: the number of times this item can be purchased. If fungible, returns 0\n     * @return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n     * @return _active bool: true if the item is open for interaction and false if it is permanently locked\n     * @return _purchasers uint[]: array of userIDs that purchased this item\n     **/\n    function itemProfile(uint _id) public virtual view returns (\n        string memory _description,\n        bool _fungible,\n        uint _quantity,\n        uint _cost,\n        bool _active,\n        uint[] memory _purchasers\n        );\n}\n",
-  "sourcePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItemShop.sol",
+  "source": " pragma solidity >= 0.4.0 < 0.7.0;\n\n abstract contract IMUBCItems {\n\n    event ItemListed(uint itemID);\n    event ItemPurchased(uint itemID, uint uuid);\n    event ItemDelisted(uint itemID);\n\n    struct Item {\n        uint itemID;\n        string description;\n        uint quantity;\n        uint cost;\n        bool active;\n        uint activeIndex;\n        mapping(uint => bool) purchases;\n        uint[] purchasers;\n    }\n\n    mapping(uint => Item) public itemRegistry;\n    mapping(uint => uint) public activeItems;\n    uint public itemSerial;\n    uint public activeSerial;\n\n    /**\n     * @dev modifier onlyCron\n     * List a new item on the MUBC shop\n     * @param _description string: a short description of the item being offered for purchase\n     * @param _quantity uint: number of times this item can be purchased.\n     * @param _cost uint: how many incentive tokens must be burned to purchase this item\n     * @return _itemID uint: the itemSerial given to the newly listed item\n     **/\n    function listItem(\n        string memory _description,\n        uint _quantity,\n        uint _cost\n        ) public virtual returns (uint _itemID);\n    \n    /**\n     * @dev modifier onlyCron\n     * Permanently retire an item from the shop\n     * @param _itemID uint: the itemID of the Item being toggled as inactive\n     **/\n    function delistItem(uint _itemID) public virtual; \n    \n    /**\n     * @dev modifier onlyCron\n     * Spend MUBC tokens to purchase an item. Items should not be purchasable twice.\n     * @param _itemID uint: the itemID of the item being purchased\n     * @param _as uint: userID of the user purchasing the item\n     **/\n    function purchaseItem(uint _itemID, uint _as) public virtual;\n\n    /**\n     * Get an array of all the currently active items in the incentive network\n     * @return _itemIDs uint[]: array of all items currently marked active\n     **/\n    function getActiveItems() public virtual view returns (uint[] memory _itemIDs);\n\n    /**\n     * Return the data associated with an item\n     * @param _id uint: the itemID being queried\n     * @return _description string: the description of the item and it's properties/ entitlements if bought\n     * @return _quantity uint: the number of times this item can be purchased.\n     * @return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n     * @return _active bool: true if the item is open for interaction and false if it is permanently locked\n     * @return _purchasers uint[]: array of userIDs that purchased this item\n     **/\n    function itemProfile(uint _id) public virtual view returns (\n        string memory _description,\n        uint _quantity,\n        uint _cost,\n        bool _active,\n        uint[] memory _purchasers\n        );\n}\n",
+  "sourcePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItems.sol",
   "ast": {
-    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItemShop.sol",
+    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItems.sol",
     "exportedSymbols": {
-      "IMUBCItemShop": [
-        249
+      "IMUBCItems": [
+        266
       ]
     },
-    "id": 250,
+    "id": 267,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 151,
+        "id": 174,
         "literals": [
           "solidity",
           ">=",
@@ -292,7 +277,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "1:33:1"
+        "src": "1:33:2"
       },
       {
         "abstract": true,
@@ -301,32 +286,32 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 249,
+        "id": 266,
         "linearizedBaseContracts": [
-          249
+          266
         ],
-        "name": "IMUBCItemShop",
+        "name": "IMUBCItems",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
             "documentation": null,
-            "id": 155,
+            "id": 178,
             "name": "ItemListed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 154,
+              "id": 177,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 153,
+                  "id": 176,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 155,
-                  "src": "93:11:1",
+                  "scope": 178,
+                  "src": "90:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -334,10 +319,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 152,
+                    "id": 175,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "93:4:1",
+                    "src": "90:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -347,29 +332,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "92:13:1"
+              "src": "89:13:2"
             },
-            "src": "76:30:1"
+            "src": "73:30:2"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 161,
+            "id": 184,
             "name": "ItemPurchased",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 160,
+              "id": 183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 157,
+                  "id": 180,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 161,
-                  "src": "131:11:1",
+                  "scope": 184,
+                  "src": "128:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -377,10 +362,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 156,
+                    "id": 179,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:4:1",
+                    "src": "128:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -391,13 +376,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 159,
+                  "id": 182,
                   "indexed": false,
                   "name": "uuid",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 161,
-                  "src": "144:9:1",
+                  "scope": 184,
+                  "src": "141:9:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -405,10 +390,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 158,
+                    "id": 181,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:4:1",
+                    "src": "141:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -418,29 +403,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "130:24:1"
+              "src": "127:24:2"
             },
-            "src": "111:44:1"
+            "src": "108:44:2"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 165,
+            "id": 188,
             "name": "ItemDelisted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 164,
+              "id": 187,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 163,
+                  "id": 186,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 165,
-                  "src": "179:11:1",
+                  "scope": 188,
+                  "src": "176:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -448,10 +433,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 162,
+                    "id": 185,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "179:4:1",
+                    "src": "176:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -461,22 +446,22 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "178:13:1"
+              "src": "175:13:2"
             },
-            "src": "160:32:1"
+            "src": "157:32:2"
           },
           {
-            "canonicalName": "IMUBCItemShop.Item",
-            "id": 187,
+            "canonicalName": "IMUBCItems.Item",
+            "id": 208,
             "members": [
               {
                 "constant": false,
-                "id": 167,
+                "id": 190,
                 "name": "itemID",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "220:11:1",
+                "scope": 208,
+                "src": "217:11:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -484,10 +469,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 166,
+                  "id": 189,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "220:4:1",
+                  "src": "217:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -498,12 +483,12 @@
               },
               {
                 "constant": false,
-                "id": 169,
+                "id": 192,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "241:18:1",
+                "scope": 208,
+                "src": "238:18:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -511,10 +496,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 168,
+                  "id": 191,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "241:6:1",
+                  "src": "238:6:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -525,39 +510,12 @@
               },
               {
                 "constant": false,
-                "id": 171,
-                "name": "fungible",
-                "nodeType": "VariableDeclaration",
-                "overrides": null,
-                "scope": 187,
-                "src": "269:13:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bool",
-                  "typeString": "bool"
-                },
-                "typeName": {
-                  "id": 170,
-                  "name": "bool",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "269:4:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 173,
+                "id": 194,
                 "name": "quantity",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "292:13:1",
+                "scope": 208,
+                "src": "266:13:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -565,10 +523,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 172,
+                  "id": 193,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "292:4:1",
+                  "src": "266:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -579,12 +537,12 @@
               },
               {
                 "constant": false,
-                "id": 175,
+                "id": 196,
                 "name": "cost",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "315:9:1",
+                "scope": 208,
+                "src": "289:9:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -592,10 +550,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 174,
+                  "id": 195,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "315:4:1",
+                  "src": "289:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -606,12 +564,12 @@
               },
               {
                 "constant": false,
-                "id": 177,
+                "id": 198,
                 "name": "active",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "334:11:1",
+                "scope": 208,
+                "src": "308:11:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -619,10 +577,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 176,
+                  "id": 197,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "334:4:1",
+                  "src": "308:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -633,12 +591,12 @@
               },
               {
                 "constant": false,
-                "id": 179,
+                "id": 200,
                 "name": "activeIndex",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "355:16:1",
+                "scope": 208,
+                "src": "329:16:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -646,10 +604,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 178,
+                  "id": 199,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "355:4:1",
+                  "src": "329:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -660,12 +618,12 @@
               },
               {
                 "constant": false,
-                "id": 183,
+                "id": 204,
                 "name": "purchases",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "381:31:1",
+                "scope": 208,
+                "src": "355:31:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -673,28 +631,28 @@
                   "typeString": "mapping(uint256 => bool)"
                 },
                 "typeName": {
-                  "id": 182,
+                  "id": 203,
                   "keyType": {
-                    "id": 180,
+                    "id": 201,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "389:4:1",
+                    "src": "363:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "381:21:1",
+                  "src": "355:21:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
                     "typeString": "mapping(uint256 => bool)"
                   },
                   "valueType": {
-                    "id": 181,
+                    "id": 202,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:1",
+                    "src": "371:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -706,12 +664,12 @@
               },
               {
                 "constant": false,
-                "id": 186,
+                "id": 207,
                 "name": "purchasers",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "422:17:1",
+                "scope": 208,
+                "src": "396:17:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -720,19 +678,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 184,
+                    "id": 205,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "422:4:1",
+                    "src": "396:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 185,
+                  "id": 206,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "422:6:1",
+                  "src": "396:6:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -744,53 +702,53 @@
             ],
             "name": "Item",
             "nodeType": "StructDefinition",
-            "scope": 249,
-            "src": "198:248:1",
+            "scope": 266,
+            "src": "195:225:2",
             "visibility": "public"
           },
           {
             "constant": false,
             "functionSelector": "6c68ad25",
-            "id": 191,
+            "id": 212,
             "name": "itemRegistry",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "452:41:1",
+            "scope": 266,
+            "src": "426:41:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$187_storage_$",
-              "typeString": "mapping(uint256 => struct IMUBCItemShop.Item)"
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$208_storage_$",
+              "typeString": "mapping(uint256 => struct IMUBCItems.Item)"
             },
             "typeName": {
-              "id": 190,
+              "id": 211,
               "keyType": {
-                "id": 188,
+                "id": 209,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "460:4:1",
+                "src": "434:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "452:21:1",
+              "src": "426:21:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$187_storage_$",
-                "typeString": "mapping(uint256 => struct IMUBCItemShop.Item)"
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$208_storage_$",
+                "typeString": "mapping(uint256 => struct IMUBCItems.Item)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 189,
+                "id": 210,
                 "name": "Item",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 187,
-                "src": "468:4:1",
+                "referencedDeclaration": 208,
+                "src": "442:4:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Item_$187_storage_ptr",
-                  "typeString": "struct IMUBCItemShop.Item"
+                  "typeIdentifier": "t_struct$_Item_$208_storage_ptr",
+                  "typeString": "struct IMUBCItems.Item"
                 }
               }
             },
@@ -800,12 +758,12 @@
           {
             "constant": false,
             "functionSelector": "9c318c7b",
-            "id": 195,
+            "id": 216,
             "name": "activeItems",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "499:40:1",
+            "scope": 266,
+            "src": "473:40:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -813,28 +771,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 194,
+              "id": 215,
               "keyType": {
-                "id": 192,
+                "id": 213,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "507:4:1",
+                "src": "481:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "499:21:1",
+              "src": "473:21:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 193,
+                "id": 214,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "515:4:1",
+                "src": "489:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -847,12 +805,12 @@
           {
             "constant": false,
             "functionSelector": "f1dc75d2",
-            "id": 197,
+            "id": 218,
             "name": "itemSerial",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "545:22:1",
+            "scope": 266,
+            "src": "519:22:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -860,10 +818,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 196,
+              "id": 217,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "545:4:1",
+              "src": "519:4:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -875,12 +833,12 @@
           {
             "constant": false,
             "functionSelector": "7db64687",
-            "id": 199,
+            "id": 220,
             "name": "activeSerial",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "573:24:1",
+            "scope": 266,
+            "src": "547:24:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -888,10 +846,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 198,
+              "id": 219,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "573:4:1",
+              "src": "547:4:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -902,9 +860,9 @@
           },
           {
             "body": null,
-            "documentation": "@dev modifier onlyCron\nList a new item on the MUBC shop\n@param _description string: a short description of the item being offered for purchase\n@param _fungible bool: true if item can be infinitely purchased, false otherwise\n@param _quantity uint: number of times this item can be purchased. if fungible, set value to 0\n@param _cost uint: how many incentive tokens must be burned to purchase this item\n@return _itemID uint: the itemSerial given to the newly listed item*",
-            "functionSelector": "da09b509",
-            "id": 212,
+            "documentation": "@dev modifier onlyCron\nList a new item on the MUBC shop\n@param _description string: a short description of the item being offered for purchase\n@param _quantity uint: number of times this item can be purchased.\n@param _cost uint: how many incentive tokens must be burned to purchase this item\n@return _itemID uint: the itemSerial given to the newly listed item*",
+            "functionSelector": "f1766279",
+            "id": 231,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -912,17 +870,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 208,
+              "id": 227,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 201,
+                  "id": 222,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1166:26:1",
+                  "scope": 231,
+                  "src": "1024:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -930,10 +888,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 200,
+                    "id": 221,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1166:6:1",
+                    "src": "1024:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -944,39 +902,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 203,
-                  "name": "_fungible",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 212,
-                  "src": "1202:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 202,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1202:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 205,
+                  "id": 224,
                   "name": "_quantity",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1226:14:1",
+                  "scope": 231,
+                  "src": "1060:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -984,10 +915,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 204,
+                    "id": 223,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1226:4:1",
+                    "src": "1060:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -998,12 +929,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 207,
+                  "id": 226,
                   "name": "_cost",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1250:10:1",
+                  "scope": 231,
+                  "src": "1084:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1011,10 +942,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 206,
+                    "id": 225,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1250:4:1",
+                    "src": "1084:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1024,20 +955,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:114:1"
+              "src": "1014:90:2"
             },
             "returnParameters": {
-              "id": 211,
+              "id": 230,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 210,
+                  "id": 229,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1295:12:1",
+                  "scope": 231,
+                  "src": "1129:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1045,10 +976,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 209,
+                    "id": 228,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1295:4:1",
+                    "src": "1129:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1058,10 +989,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1294:14:1"
+              "src": "1128:14:2"
             },
-            "scope": 249,
-            "src": "1139:170:1",
+            "scope": 266,
+            "src": "997:146:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -1070,7 +1001,7 @@
             "body": null,
             "documentation": "@dev modifier onlyCron\nPermanently retire an item from the shop\n@param _itemID uint: the itemID of the Item being toggled as inactive*",
             "functionSelector": "10061631",
-            "id": 217,
+            "id": 236,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1078,17 +1009,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 215,
+              "id": 234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 214,
+                  "id": 233,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 217,
-                  "src": "1511:12:1",
+                  "scope": 236,
+                  "src": "1345:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1096,10 +1027,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 213,
+                    "id": 232,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1511:4:1",
+                    "src": "1345:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1109,16 +1040,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1510:14:1"
+              "src": "1344:14:2"
             },
             "returnParameters": {
-              "id": 216,
+              "id": 235,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1539:0:1"
+              "src": "1373:0:2"
             },
-            "scope": 249,
-            "src": "1491:49:1",
+            "scope": 266,
+            "src": "1325:49:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -1127,7 +1058,7 @@
             "body": null,
             "documentation": "@dev modifier onlyCron\nSpend MUBC tokens to purchase an item. Items should not be purchasable twice.\n@param _itemID uint: the itemID of the item being purchased\n@param _as uint: userID of the user purchasing the item*",
             "functionSelector": "e0675698",
-            "id": 224,
+            "id": 243,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1135,17 +1066,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 222,
+              "id": 241,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 219,
+                  "id": 238,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 224,
-                  "src": "1835:12:1",
+                  "scope": 243,
+                  "src": "1669:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1153,10 +1084,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 218,
+                    "id": 237,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1835:4:1",
+                    "src": "1669:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1167,12 +1098,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 221,
+                  "id": 240,
                   "name": "_as",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 224,
-                  "src": "1849:8:1",
+                  "scope": 243,
+                  "src": "1683:8:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1180,10 +1111,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 220,
+                    "id": 239,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1849:4:1",
+                    "src": "1683:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1193,16 +1124,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1834:24:1"
+              "src": "1668:24:2"
             },
             "returnParameters": {
-              "id": 223,
+              "id": 242,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1873:0:1"
+              "src": "1707:0:2"
             },
-            "scope": 249,
-            "src": "1813:61:1",
+            "scope": 266,
+            "src": "1647:61:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -1211,7 +1142,7 @@
             "body": null,
             "documentation": "Get an array of all the currently active items in the incentive network\n@return _itemIDs uint[]: array of all items currently marked active*",
             "functionSelector": "91f6611d",
-            "id": 230,
+            "id": 249,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1219,23 +1150,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 225,
+              "id": 244,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2074:2:1"
+              "src": "1908:2:2"
             },
             "returnParameters": {
-              "id": 229,
+              "id": 248,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 228,
+                  "id": 247,
                   "name": "_itemIDs",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 230,
-                  "src": "2106:22:1",
+                  "scope": 249,
+                  "src": "1940:22:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1244,19 +1175,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 226,
+                      "id": 245,
                       "name": "uint",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2106:4:1",
+                      "src": "1940:4:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 227,
+                    "id": 246,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2106:6:1",
+                    "src": "1940:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -1266,19 +1197,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2105:24:1"
+              "src": "1939:24:2"
             },
-            "scope": 249,
-            "src": "2051:79:1",
+            "scope": 266,
+            "src": "1885:79:2",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "body": null,
-            "documentation": "Return the data associated with an item\n@param _id uint: the itemID being queried\n@return _description string: the description of the item and it's properties/ entitlements if bought\n@return _fungible bool: true if the item is infinite, and false otherwise\n@return _quantity uint: the number of times this item can be purchased. If fungible, returns 0\n@return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n@return _active bool: true if the item is open for interaction and false if it is permanently locked\n@return _purchasers uint[]: array of userIDs that purchased this item*",
+            "documentation": "Return the data associated with an item\n@param _id uint: the itemID being queried\n@return _description string: the description of the item and it's properties/ entitlements if bought\n@return _quantity uint: the number of times this item can be purchased.\n@return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n@return _active bool: true if the item is open for interaction and false if it is permanently locked\n@return _purchasers uint[]: array of userIDs that purchased this item*",
             "functionSelector": "2e816a2d",
-            "id": 248,
+            "id": 265,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1286,17 +1217,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 233,
+              "id": 252,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 232,
+                  "id": 251,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2856:8:1",
+                  "scope": 265,
+                  "src": "2583:8:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1304,10 +1235,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 231,
+                    "id": 250,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2856:4:1",
+                    "src": "2583:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1317,20 +1248,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2855:10:1"
+              "src": "2582:10:2"
             },
             "returnParameters": {
-              "id": 247,
+              "id": 264,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 235,
+                  "id": 254,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2904:26:1",
+                  "scope": 265,
+                  "src": "2631:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1338,10 +1269,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 234,
+                    "id": 253,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2904:6:1",
+                    "src": "2631:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1352,39 +1283,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 237,
-                  "name": "_fungible",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 248,
-                  "src": "2940:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 236,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2940:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 239,
+                  "id": 256,
                   "name": "_quantity",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2964:14:1",
+                  "scope": 265,
+                  "src": "2667:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1392,10 +1296,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 238,
+                    "id": 255,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2964:4:1",
+                    "src": "2667:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1406,12 +1310,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 241,
+                  "id": 258,
                   "name": "_cost",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2988:10:1",
+                  "scope": 265,
+                  "src": "2691:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1419,10 +1323,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 240,
+                    "id": 257,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2988:4:1",
+                    "src": "2691:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1433,12 +1337,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 243,
+                  "id": 260,
                   "name": "_active",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "3008:12:1",
+                  "scope": 265,
+                  "src": "2711:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1446,10 +1350,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 242,
+                    "id": 259,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3008:4:1",
+                    "src": "2711:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1460,12 +1364,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 246,
+                  "id": 263,
                   "name": "_purchasers",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "3030:25:1",
+                  "scope": 265,
+                  "src": "2733:25:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1474,19 +1378,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 244,
+                      "id": 261,
                       "name": "uint",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3030:4:1",
+                      "src": "2733:4:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 245,
+                    "id": 262,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "3030:6:1",
+                    "src": "2733:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -1496,33 +1400,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2894:171:1"
+              "src": "2621:147:2"
             },
-            "scope": 249,
-            "src": "2835:231:1",
+            "scope": 266,
+            "src": "2562:207:2",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           }
         ],
-        "scope": 250,
-        "src": "37:3031:1"
+        "scope": 267,
+        "src": "37:2734:2"
       }
     ],
-    "src": "1:3068:1"
+    "src": "1:2771:2"
   },
   "legacyAST": {
-    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItemShop.sol",
+    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCItems.sol",
     "exportedSymbols": {
-      "IMUBCItemShop": [
-        249
+      "IMUBCItems": [
+        266
       ]
     },
-    "id": 250,
+    "id": 267,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 151,
+        "id": 174,
         "literals": [
           "solidity",
           ">=",
@@ -1533,7 +1437,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "1:33:1"
+        "src": "1:33:2"
       },
       {
         "abstract": true,
@@ -1542,32 +1446,32 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 249,
+        "id": 266,
         "linearizedBaseContracts": [
-          249
+          266
         ],
-        "name": "IMUBCItemShop",
+        "name": "IMUBCItems",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
             "documentation": null,
-            "id": 155,
+            "id": 178,
             "name": "ItemListed",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 154,
+              "id": 177,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 153,
+                  "id": 176,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 155,
-                  "src": "93:11:1",
+                  "scope": 178,
+                  "src": "90:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1575,10 +1479,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 152,
+                    "id": 175,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "93:4:1",
+                    "src": "90:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1588,29 +1492,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "92:13:1"
+              "src": "89:13:2"
             },
-            "src": "76:30:1"
+            "src": "73:30:2"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 161,
+            "id": 184,
             "name": "ItemPurchased",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 160,
+              "id": 183,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 157,
+                  "id": 180,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 161,
-                  "src": "131:11:1",
+                  "scope": 184,
+                  "src": "128:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1618,10 +1522,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 156,
+                    "id": 179,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "131:4:1",
+                    "src": "128:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1632,13 +1536,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 159,
+                  "id": 182,
                   "indexed": false,
                   "name": "uuid",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 161,
-                  "src": "144:9:1",
+                  "scope": 184,
+                  "src": "141:9:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1646,10 +1550,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 158,
+                    "id": 181,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:4:1",
+                    "src": "141:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1659,29 +1563,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "130:24:1"
+              "src": "127:24:2"
             },
-            "src": "111:44:1"
+            "src": "108:44:2"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 165,
+            "id": 188,
             "name": "ItemDelisted",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 164,
+              "id": 187,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 163,
+                  "id": 186,
                   "indexed": false,
                   "name": "itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 165,
-                  "src": "179:11:1",
+                  "scope": 188,
+                  "src": "176:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1689,10 +1593,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 162,
+                    "id": 185,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "179:4:1",
+                    "src": "176:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1702,22 +1606,22 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "178:13:1"
+              "src": "175:13:2"
             },
-            "src": "160:32:1"
+            "src": "157:32:2"
           },
           {
-            "canonicalName": "IMUBCItemShop.Item",
-            "id": 187,
+            "canonicalName": "IMUBCItems.Item",
+            "id": 208,
             "members": [
               {
                 "constant": false,
-                "id": 167,
+                "id": 190,
                 "name": "itemID",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "220:11:1",
+                "scope": 208,
+                "src": "217:11:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1725,10 +1629,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 166,
+                  "id": 189,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "220:4:1",
+                  "src": "217:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1739,12 +1643,12 @@
               },
               {
                 "constant": false,
-                "id": 169,
+                "id": 192,
                 "name": "description",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "241:18:1",
+                "scope": 208,
+                "src": "238:18:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1752,10 +1656,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 168,
+                  "id": 191,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "241:6:1",
+                  "src": "238:6:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -1766,39 +1670,12 @@
               },
               {
                 "constant": false,
-                "id": 171,
-                "name": "fungible",
-                "nodeType": "VariableDeclaration",
-                "overrides": null,
-                "scope": 187,
-                "src": "269:13:1",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_bool",
-                  "typeString": "bool"
-                },
-                "typeName": {
-                  "id": 170,
-                  "name": "bool",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "269:4:1",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 173,
+                "id": 194,
                 "name": "quantity",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "292:13:1",
+                "scope": 208,
+                "src": "266:13:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1806,10 +1683,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 172,
+                  "id": 193,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "292:4:1",
+                  "src": "266:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1820,12 +1697,12 @@
               },
               {
                 "constant": false,
-                "id": 175,
+                "id": 196,
                 "name": "cost",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "315:9:1",
+                "scope": 208,
+                "src": "289:9:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1833,10 +1710,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 174,
+                  "id": 195,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "315:4:1",
+                  "src": "289:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1847,12 +1724,12 @@
               },
               {
                 "constant": false,
-                "id": 177,
+                "id": 198,
                 "name": "active",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "334:11:1",
+                "scope": 208,
+                "src": "308:11:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1860,10 +1737,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 176,
+                  "id": 197,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "334:4:1",
+                  "src": "308:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1874,12 +1751,12 @@
               },
               {
                 "constant": false,
-                "id": 179,
+                "id": 200,
                 "name": "activeIndex",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "355:16:1",
+                "scope": 208,
+                "src": "329:16:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1887,10 +1764,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 178,
+                  "id": 199,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "355:4:1",
+                  "src": "329:4:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1901,12 +1778,12 @@
               },
               {
                 "constant": false,
-                "id": 183,
+                "id": 204,
                 "name": "purchases",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "381:31:1",
+                "scope": 208,
+                "src": "355:31:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1914,28 +1791,28 @@
                   "typeString": "mapping(uint256 => bool)"
                 },
                 "typeName": {
-                  "id": 182,
+                  "id": 203,
                   "keyType": {
-                    "id": 180,
+                    "id": 201,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "389:4:1",
+                    "src": "363:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "381:21:1",
+                  "src": "355:21:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_uint256_$_t_bool_$",
                     "typeString": "mapping(uint256 => bool)"
                   },
                   "valueType": {
-                    "id": 181,
+                    "id": 202,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:1",
+                    "src": "371:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1947,12 +1824,12 @@
               },
               {
                 "constant": false,
-                "id": 186,
+                "id": 207,
                 "name": "purchasers",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 187,
-                "src": "422:17:1",
+                "scope": 208,
+                "src": "396:17:2",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1961,19 +1838,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 184,
+                    "id": 205,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "422:4:1",
+                    "src": "396:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 185,
+                  "id": 206,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "422:6:1",
+                  "src": "396:6:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -1985,53 +1862,53 @@
             ],
             "name": "Item",
             "nodeType": "StructDefinition",
-            "scope": 249,
-            "src": "198:248:1",
+            "scope": 266,
+            "src": "195:225:2",
             "visibility": "public"
           },
           {
             "constant": false,
             "functionSelector": "6c68ad25",
-            "id": 191,
+            "id": 212,
             "name": "itemRegistry",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "452:41:1",
+            "scope": 266,
+            "src": "426:41:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$187_storage_$",
-              "typeString": "mapping(uint256 => struct IMUBCItemShop.Item)"
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$208_storage_$",
+              "typeString": "mapping(uint256 => struct IMUBCItems.Item)"
             },
             "typeName": {
-              "id": 190,
+              "id": 211,
               "keyType": {
-                "id": 188,
+                "id": 209,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "460:4:1",
+                "src": "434:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "452:21:1",
+              "src": "426:21:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$187_storage_$",
-                "typeString": "mapping(uint256 => struct IMUBCItemShop.Item)"
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Item_$208_storage_$",
+                "typeString": "mapping(uint256 => struct IMUBCItems.Item)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 189,
+                "id": 210,
                 "name": "Item",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 187,
-                "src": "468:4:1",
+                "referencedDeclaration": 208,
+                "src": "442:4:2",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Item_$187_storage_ptr",
-                  "typeString": "struct IMUBCItemShop.Item"
+                  "typeIdentifier": "t_struct$_Item_$208_storage_ptr",
+                  "typeString": "struct IMUBCItems.Item"
                 }
               }
             },
@@ -2041,12 +1918,12 @@
           {
             "constant": false,
             "functionSelector": "9c318c7b",
-            "id": 195,
+            "id": 216,
             "name": "activeItems",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "499:40:1",
+            "scope": 266,
+            "src": "473:40:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2054,28 +1931,28 @@
               "typeString": "mapping(uint256 => uint256)"
             },
             "typeName": {
-              "id": 194,
+              "id": 215,
               "keyType": {
-                "id": 192,
+                "id": 213,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "507:4:1",
+                "src": "481:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "499:21:1",
+              "src": "473:21:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
                 "typeString": "mapping(uint256 => uint256)"
               },
               "valueType": {
-                "id": 193,
+                "id": 214,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "515:4:1",
+                "src": "489:4:2",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -2088,12 +1965,12 @@
           {
             "constant": false,
             "functionSelector": "f1dc75d2",
-            "id": 197,
+            "id": 218,
             "name": "itemSerial",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "545:22:1",
+            "scope": 266,
+            "src": "519:22:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2101,10 +1978,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 196,
+              "id": 217,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "545:4:1",
+              "src": "519:4:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -2116,12 +1993,12 @@
           {
             "constant": false,
             "functionSelector": "7db64687",
-            "id": 199,
+            "id": 220,
             "name": "activeSerial",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 249,
-            "src": "573:24:1",
+            "scope": 266,
+            "src": "547:24:2",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2129,10 +2006,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 198,
+              "id": 219,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "573:4:1",
+              "src": "547:4:2",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -2143,9 +2020,9 @@
           },
           {
             "body": null,
-            "documentation": "@dev modifier onlyCron\nList a new item on the MUBC shop\n@param _description string: a short description of the item being offered for purchase\n@param _fungible bool: true if item can be infinitely purchased, false otherwise\n@param _quantity uint: number of times this item can be purchased. if fungible, set value to 0\n@param _cost uint: how many incentive tokens must be burned to purchase this item\n@return _itemID uint: the itemSerial given to the newly listed item*",
-            "functionSelector": "da09b509",
-            "id": 212,
+            "documentation": "@dev modifier onlyCron\nList a new item on the MUBC shop\n@param _description string: a short description of the item being offered for purchase\n@param _quantity uint: number of times this item can be purchased.\n@param _cost uint: how many incentive tokens must be burned to purchase this item\n@return _itemID uint: the itemSerial given to the newly listed item*",
+            "functionSelector": "f1766279",
+            "id": 231,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -2153,17 +2030,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 208,
+              "id": 227,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 201,
+                  "id": 222,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1166:26:1",
+                  "scope": 231,
+                  "src": "1024:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2171,10 +2048,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 200,
+                    "id": 221,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1166:6:1",
+                    "src": "1024:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2185,39 +2062,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 203,
-                  "name": "_fungible",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 212,
-                  "src": "1202:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 202,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1202:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 205,
+                  "id": 224,
                   "name": "_quantity",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1226:14:1",
+                  "scope": 231,
+                  "src": "1060:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2225,10 +2075,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 204,
+                    "id": 223,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1226:4:1",
+                    "src": "1060:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2239,12 +2089,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 207,
+                  "id": 226,
                   "name": "_cost",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1250:10:1",
+                  "scope": 231,
+                  "src": "1084:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2252,10 +2102,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 206,
+                    "id": 225,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1250:4:1",
+                    "src": "1084:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2265,20 +2115,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1156:114:1"
+              "src": "1014:90:2"
             },
             "returnParameters": {
-              "id": 211,
+              "id": 230,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 210,
+                  "id": 229,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 212,
-                  "src": "1295:12:1",
+                  "scope": 231,
+                  "src": "1129:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2286,10 +2136,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 209,
+                    "id": 228,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1295:4:1",
+                    "src": "1129:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2299,10 +2149,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1294:14:1"
+              "src": "1128:14:2"
             },
-            "scope": 249,
-            "src": "1139:170:1",
+            "scope": 266,
+            "src": "997:146:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -2311,7 +2161,7 @@
             "body": null,
             "documentation": "@dev modifier onlyCron\nPermanently retire an item from the shop\n@param _itemID uint: the itemID of the Item being toggled as inactive*",
             "functionSelector": "10061631",
-            "id": 217,
+            "id": 236,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -2319,17 +2169,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 215,
+              "id": 234,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 214,
+                  "id": 233,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 217,
-                  "src": "1511:12:1",
+                  "scope": 236,
+                  "src": "1345:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2337,10 +2187,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 213,
+                    "id": 232,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1511:4:1",
+                    "src": "1345:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2350,16 +2200,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1510:14:1"
+              "src": "1344:14:2"
             },
             "returnParameters": {
-              "id": 216,
+              "id": 235,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1539:0:1"
+              "src": "1373:0:2"
             },
-            "scope": 249,
-            "src": "1491:49:1",
+            "scope": 266,
+            "src": "1325:49:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -2368,7 +2218,7 @@
             "body": null,
             "documentation": "@dev modifier onlyCron\nSpend MUBC tokens to purchase an item. Items should not be purchasable twice.\n@param _itemID uint: the itemID of the item being purchased\n@param _as uint: userID of the user purchasing the item*",
             "functionSelector": "e0675698",
-            "id": 224,
+            "id": 243,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -2376,17 +2226,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 222,
+              "id": 241,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 219,
+                  "id": 238,
                   "name": "_itemID",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 224,
-                  "src": "1835:12:1",
+                  "scope": 243,
+                  "src": "1669:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2394,10 +2244,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 218,
+                    "id": 237,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1835:4:1",
+                    "src": "1669:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2408,12 +2258,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 221,
+                  "id": 240,
                   "name": "_as",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 224,
-                  "src": "1849:8:1",
+                  "scope": 243,
+                  "src": "1683:8:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2421,10 +2271,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 220,
+                    "id": 239,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1849:4:1",
+                    "src": "1683:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2434,16 +2284,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1834:24:1"
+              "src": "1668:24:2"
             },
             "returnParameters": {
-              "id": 223,
+              "id": 242,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1873:0:1"
+              "src": "1707:0:2"
             },
-            "scope": 249,
-            "src": "1813:61:1",
+            "scope": 266,
+            "src": "1647:61:2",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
@@ -2452,7 +2302,7 @@
             "body": null,
             "documentation": "Get an array of all the currently active items in the incentive network\n@return _itemIDs uint[]: array of all items currently marked active*",
             "functionSelector": "91f6611d",
-            "id": 230,
+            "id": 249,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -2460,23 +2310,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 225,
+              "id": 244,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2074:2:1"
+              "src": "1908:2:2"
             },
             "returnParameters": {
-              "id": 229,
+              "id": 248,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 228,
+                  "id": 247,
                   "name": "_itemIDs",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 230,
-                  "src": "2106:22:1",
+                  "scope": 249,
+                  "src": "1940:22:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2485,19 +2335,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 226,
+                      "id": 245,
                       "name": "uint",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2106:4:1",
+                      "src": "1940:4:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 227,
+                    "id": 246,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2106:6:1",
+                    "src": "1940:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -2507,19 +2357,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2105:24:1"
+              "src": "1939:24:2"
             },
-            "scope": 249,
-            "src": "2051:79:1",
+            "scope": 266,
+            "src": "1885:79:2",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "body": null,
-            "documentation": "Return the data associated with an item\n@param _id uint: the itemID being queried\n@return _description string: the description of the item and it's properties/ entitlements if bought\n@return _fungible bool: true if the item is infinite, and false otherwise\n@return _quantity uint: the number of times this item can be purchased. If fungible, returns 0\n@return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n@return _active bool: true if the item is open for interaction and false if it is permanently locked\n@return _purchasers uint[]: array of userIDs that purchased this item*",
+            "documentation": "Return the data associated with an item\n@param _id uint: the itemID being queried\n@return _description string: the description of the item and it's properties/ entitlements if bought\n@return _quantity uint: the number of times this item can be purchased.\n@return _cost uint: the number of MUBC tokens that are burned from the user's account upon purchase\n@return _active bool: true if the item is open for interaction and false if it is permanently locked\n@return _purchasers uint[]: array of userIDs that purchased this item*",
             "functionSelector": "2e816a2d",
-            "id": 248,
+            "id": 265,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -2527,17 +2377,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 233,
+              "id": 252,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 232,
+                  "id": 251,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2856:8:1",
+                  "scope": 265,
+                  "src": "2583:8:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2545,10 +2395,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 231,
+                    "id": 250,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2856:4:1",
+                    "src": "2583:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2558,20 +2408,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2855:10:1"
+              "src": "2582:10:2"
             },
             "returnParameters": {
-              "id": 247,
+              "id": 264,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 235,
+                  "id": 254,
                   "name": "_description",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2904:26:1",
+                  "scope": 265,
+                  "src": "2631:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2579,10 +2429,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 234,
+                    "id": 253,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2904:6:1",
+                    "src": "2631:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -2593,39 +2443,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 237,
-                  "name": "_fungible",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 248,
-                  "src": "2940:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 236,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "2940:4:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 239,
+                  "id": 256,
                   "name": "_quantity",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2964:14:1",
+                  "scope": 265,
+                  "src": "2667:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2633,10 +2456,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 238,
+                    "id": 255,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2964:4:1",
+                    "src": "2667:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2647,12 +2470,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 241,
+                  "id": 258,
                   "name": "_cost",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "2988:10:1",
+                  "scope": 265,
+                  "src": "2691:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2660,10 +2483,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 240,
+                    "id": 257,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2988:4:1",
+                    "src": "2691:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2674,12 +2497,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 243,
+                  "id": 260,
                   "name": "_active",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "3008:12:1",
+                  "scope": 265,
+                  "src": "2711:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2687,10 +2510,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 242,
+                    "id": 259,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3008:4:1",
+                    "src": "2711:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2701,12 +2524,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 246,
+                  "id": 263,
                   "name": "_purchasers",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 248,
-                  "src": "3030:25:1",
+                  "scope": 265,
+                  "src": "2733:25:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2715,19 +2538,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 244,
+                      "id": 261,
                       "name": "uint",
                       "nodeType": "ElementaryTypeName",
-                      "src": "3030:4:1",
+                      "src": "2733:4:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 245,
+                    "id": 262,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "3030:6:1",
+                    "src": "2733:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -2737,20 +2560,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2894:171:1"
+              "src": "2621:147:2"
             },
-            "scope": 249,
-            "src": "2835:231:1",
+            "scope": 266,
+            "src": "2562:207:2",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           }
         ],
-        "scope": 250,
-        "src": "37:3031:1"
+        "scope": 267,
+        "src": "37:2734:2"
       }
     ],
-    "src": "1:3068:1"
+    "src": "1:2771:2"
   },
   "compiler": {
     "name": "solc",
@@ -2758,7 +2581,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-28T22:38:18.246Z",
+  "updatedAt": "2020-05-02T19:52:51.717Z",
   "devdoc": {
     "methods": {
       "delistItem(uint256)": {
@@ -2775,18 +2598,16 @@
           "_active": "bool: true if the item is open for interaction and false if it is permanently locked",
           "_cost": "uint: the number of MUBC tokens that are burned from the user's account upon purchase",
           "_description": "string: the description of the item and it's properties/ entitlements if bought",
-          "_fungible": "bool: true if the item is infinite, and false otherwise",
           "_purchasers": "uint[]: array of userIDs that purchased this item*",
-          "_quantity": "uint: the number of times this item can be purchased. If fungible, returns 0"
+          "_quantity": "uint: the number of times this item can be purchased."
         }
       },
-      "listItem(string,bool,uint256,uint256)": {
+      "listItem(string,uint256,uint256)": {
         "details": "modifier onlyCron List a new item on the MUBC shop",
         "params": {
           "_cost": "uint: how many incentive tokens must be burned to purchase this item",
           "_description": "string: a short description of the item being offered for purchase",
-          "_fungible": "bool: true if item can be infinitely purchased, false otherwise",
-          "_quantity": "uint: number of times this item can be purchased. if fungible, set value to 0"
+          "_quantity": "uint: number of times this item can be purchased."
         },
         "returns": {
           "_itemID": "uint: the itemSerial given to the newly listed item*"

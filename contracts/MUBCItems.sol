@@ -2,13 +2,12 @@ pragma solidity >= 0.4.0 < 0.7.0;
 pragma experimental ABIEncoderV2;
 
 import './MUBCCore.sol';
-import './IMUBCItemShop.sol';
+import './IMUBCItems.sol';
 
-contract MUBCItemShop is MUBCCore, IMUBCItemShop {
+contract MUBCItems is MUBCCore, IMUBCItems {
 
     function listItem(
         string memory _description,
-        bool _fungible,
         uint _quantity,
         uint _cost
         ) public override onlyCron() returns (uint _itemID) {
@@ -17,7 +16,6 @@ contract MUBCItemShop is MUBCCore, IMUBCItemShop {
         Item storage item = itemRegistry[itemSerial];
         item.itemID = itemSerial;
         item.description = _description;
-        item.fungible = _fungible;
         item.quantity = _quantity;
         item.cost = _cost;
         item.active = true;
@@ -44,11 +42,10 @@ contract MUBCItemShop is MUBCCore, IMUBCItemShop {
     function purchaseItem(uint _itemID, uint _as) public override onlyCron() {
         Item storage item = itemRegistry[_itemID];
         require(item.active, "Cannot purchase inactive item!");
-        require(item.quantity > 0 || item.fungible, "Item is sold out!");
+        require(item.quantity > 0, "Item is sold out!");
         require(getBalance(_as) >= item.cost, "User has insufficient MUBC Token balance to purchase!");
         require(!item.purchases[_as], "User has already purchased this item!");
-        if (!item.fungible)
-            item.quantity = item.quantity.sub(1);
+        item.quantity = item.quantity.sub(1);
         User storage user = userRegistry[_as];
         user.purchases.push(_itemID);
         item.purchases[_as] = true;
@@ -66,7 +63,6 @@ contract MUBCItemShop is MUBCCore, IMUBCItemShop {
 
     function itemProfile(uint _id) public override view returns (
         string memory _description,
-        bool _fungible,
         uint _quantity,
         uint _cost,
         bool _active,
@@ -77,7 +73,6 @@ contract MUBCItemShop is MUBCCore, IMUBCItemShop {
         bytes memory str = bytes(item.description);
         require(str.length > 0, "Cannot query nonexistent item ID!");
         _description = item.description;
-        _fungible = item.fungible;
         _quantity = item.quantity;
         _cost = item.cost;
         _active = item.active;

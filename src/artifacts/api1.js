@@ -11,26 +11,7 @@ let oauth = new OAuth2Client(process.env.OAUTH)
 let driver = null
 let db = null
 
-
-let verify = async (_token) => {
-    let ticket = await oauth.verifyIdToken({
-        idToken: _token,
-        audience: process.env.OAUTH
-    })
-    let payload = ticket.getPayload()
-    let userid = payload['sub']
-    console.log("payload: ", payload)
-    return userid
-}
-
-let openDB = async () => {
-    db = await mysql.createConnection({
-        host: process.env.DB_URL,
-        user: process.env.DB_USER,
-        password: process.env.DB_SECRET,
-        database: "mubc"
-    })
-}
+let announcements_api = require('./apis/announcements.api')
 
 let auth = async (ctx, next) => {
     let token = ctx.query.token
@@ -45,22 +26,30 @@ let auth = async (ctx, next) => {
 
 let routes = () => {
 
-    this.router.get('/api/signin', async (ctx) => {
+    router.get('/api/signin', async (ctx) => {
         let id = ctx.query.id
         console.log("id:", id)
         try {
-            let userid = await verify(id)
+            await verify(id)
             ctx.body = {
-                "token": id,
-                "userid": userid
+                "token": id
             }
         } catch (err) {
             ctx.status = 403
             ctx.body = err.message
         }
     })
+
+    let openDB = async () => {
+        db = await mysql.createConnection({
+            host: process.env.DB_URL,
+            user: process.env.DB_USER,
+            password: process.env.DB_SECRET,
+            database: "mubc"
+        })
+    }
     
-    this.router.get('/api/announcements/list', auth, async (ctx) => {
+    router.get('/list', auth, async (ctx) => {
         await openDB()
         try {
             let [rows] = await db.execute("SELECT * FROM Announcements")
@@ -75,7 +64,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/announcements/add', auth, async (ctx) => {
+    router.get('/add', auth, async (ctx) => {
         await openDB()
         try {
             let [rows] = await db.execute(
@@ -95,7 +84,7 @@ let routes = () => {
         }
     })
 
-    this.router.get('/api/user/register', auth, async (ctx) => {
+    router.get('/api/user/register', auth, async (ctx) => {
         try {
             let uniqueID = ctx.request.query.uniqueid
             let name = ctx.request.query.name
@@ -114,7 +103,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/user/all', auth, async (ctx) => {
+    router.get('/api/user/all', auth, async (ctx) => {
         try {
             let profiles = await driver.allProfile()
             ctx.body = {
@@ -128,7 +117,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/user/:uniqueid/uuid', auth, async (ctx) => {
+    router.get('/api/user/:uniqueid/uuid', auth, async (ctx) => {
         try {
             let uuid = await driver.uuid(ctx.params.uniqueid)
             ctx.body = {
@@ -142,7 +131,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/user/serial', auth, async (ctx) => {
+    router.get('/api/user/serial', auth, async (ctx) => {
         try {
             ctx.body = {
                 "serial": await driver.uuidSerial()
@@ -155,7 +144,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/user/:uniqueid/balance', auth, async (ctx) => {
+    router.get('/api/user/:uniqueid/balance', auth, async (ctx) => {
         try {
             let uuid = await driver.uuid(ctx.params.uniqueid)
             let balance = await driver.balance(uuid)
@@ -170,7 +159,7 @@ let routes = () => {
         }
     })
     
-    this.router.get('/api/user/:uniqueid/profile', auth, async (ctx) => {
+    router.get('/api/user/:uniqueid/profile', auth, async (ctx) => {
         try {
             let uuid = await driver.uuid(ctx.params.uniqueid)
             let profile = await driver.profile(uuid)
@@ -190,7 +179,7 @@ let routes = () => {
     
     })
     
-    this.router.get('/api/user/:uniqueid/mint', auth, async (ctx) => {
+    router.get('/api/user/:uniqueid/mint', auth, async (ctx) => {
         try {
             let to = await driver.uuid(ctx.params.uniqueid)
             let as = await driver.uuid(ctx.request.query.as)
@@ -347,6 +336,7 @@ let routes = () => {
 let initAPI = () => {
     this.api = new Koa()
     this.router = new Router()
+    this.router.use('/api/announcements', announcements_api)
     routes()
     this.api.use(this.router.routes()).use(this.router.allowedMethods())
     this.api.listen(3001)

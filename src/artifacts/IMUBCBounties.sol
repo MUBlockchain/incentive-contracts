@@ -5,9 +5,9 @@ struct Bounty {
         uint quantity;
         uint incentive;
         bool active;
+        uint awardIndex;
         mapping(uint => bool) awards;
         uint[] awardedUsers;
-        uint awardIndex;
     }
 
     mapping(uint => Bounty) bountyRegistry;

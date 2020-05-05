@@ -26,14 +26,13 @@
 let CoreTest = require('./core.test.js')
 let { expect } = require('chai')
 let { BN, expectEvent, expectRevert } = require('@openzeppelin/test-helpers')
-let MUBCToken = artifacts.require('./MUBCItemShop')
+let MUBCToken = artifacts.require('./MUBCItems')
 
 contract('MUBCToken: Core Functionality', (accounts) => {
 
     let cron = accounts[0];
     let uniqueIDs = ['executive_0', 'executive_1', 'member_0', 'member_1', 'member_2']
     let names = ['name_0', 'name_1', 'name_2', 'name_3', 'name_4']
-
 
     beforeEach(async () => {
         this.token = await MUBCToken.new({ from: cron })
@@ -208,9 +207,9 @@ contract('MUBCToken: Core Functionality', (accounts) => {
             let _item2 = new BN(2)
             let _item3 = new BN(3)
             let pre_purchases = (await this.token.profile(_member))._purchases
-            await this.token.listItem("desc_1", true, 0, 1, { from: cron })
-            await this.token.listItem("desc_2", true, 0, 1, { from: cron })
-            await this.token.listItem("desc_3", true, 0, 1, { from: cron })
+            await this.token.listItem("desc_1", 10, 1, { from: cron })
+            await this.token.listItem("desc_2", 10, 1, { from: cron })
+            await this.token.listItem("desc_3", 10, 1, { from: cron })
             await this.token.purchaseItem(_item1, _member, { from: cron })
             await this.token.purchaseItem(_item2, _member, { from: cron })
             await this.token.purchaseItem(_item3, _member, { from: cron })
@@ -290,29 +289,13 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
         await this.token.mint(2, 10, 0, { from: cron })
         await this.token.mint(3, 20, 0, { from: cron })
         await this.token.mint(4, 30, 0, { from: cron })
-        await this.token.listItem(descriptions[0], false, 2, 10)
+        await this.token.listItem(descriptions[0], 2, 10)
     })
 
     describe('Item listing:', () => {
 
-        it('Items with infinite purchasability can be created', async () => {
-            await this.token.listItem(descriptions[1], true, 0, 10, { from: cron })
-            let pre_purchase_profile = await this.token.itemProfile(2)
-            let pre_purchase_index = pre_purchase_profile._purchasers.length
-            let pre_purchase_quantity = pre_purchase_profile._quantity
-            expect(pre_purchase_index).equal(0)
-            expect(pre_purchase_quantity).to.be.bignumber.equal(new BN(0))
-            await this.token.purchaseItem(2, 2, { from: cron })
-            await this.token.purchaseItem(2, 3, { from: cron })
-            let post_purchase_profile = await this.token.itemProfile(2)
-            let post_purchase_index = post_purchase_profile._purchasers.length
-            let post_purchase_quantity = post_purchase_profile._quantity
-            expect(post_purchase_index).equal(2)
-            expect(post_purchase_quantity).to.be.bignumber.equal(new BN(0))
-        })
-
         it('Items with finite purchasability can be created', async () => {
-            await this.token.listItem(descriptions[1], false, 3, 10, { from: cron })
+            await this.token.listItem(descriptions[1], 3, 10, { from: cron })
             let pre_purchase_profile = await this.token.itemProfile(2)
             let pre_purchase_index = pre_purchase_profile._purchasers.length
             let pre_purchase_quantity = pre_purchase_profile._quantity
@@ -338,7 +321,7 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
         it('activeSerial and itemSerial increment', async () => {
             let pre_activeSerial = await this.token.activeSerial()
             let pre_itemSerial = await this.token.itemSerial()
-            await this.token.listItem(descriptions[1], false, 3, 10, { from: cron })
+            await this.token.listItem(descriptions[1], 3, 10, { from: cron })
             let post_activeSerial = await this.token.activeSerial()
             let post_itemSerial = await this.token.itemSerial()
             expect(post_activeSerial).to.be.bignumber.equal(pre_activeSerial.add(new BN(1)))
@@ -347,7 +330,7 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
 
         it('Listing returns item ID and emits "ItemListed()"', async () => {
             let expectedID = new BN(2)
-            let { logs } = await this.token.listItem(descriptions[1], false, 3, 10, { from: cron })
+            let { logs } = await this.token.listItem(descriptions[1], 3, 10, { from: cron })
             let res = logs[0].args[0]
             expect(res).to.be.bignumber.equal(expectedID)
             expectEvent.inLogs(logs, 'ItemListed', {
@@ -359,7 +342,7 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
     describe('Item purchasing:', () => {
 
         it('Items with inifinite purchasability can be bought', async () => {
-            await this.token.listItem(descriptions[1], true, 0, 10, { from: cron })
+            await this.token.listItem(descriptions[1], 10, 10, { from: cron })
             let { logs } = await this.token.purchaseItem(2, 2, { from: cron })
             expectEvent.inLogs(logs, 'ItemPurchased', {
                 itemID: new BN(2),
@@ -452,9 +435,9 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
         it('activeItems no longer includes the delisted item & activeSerial decrements', async () => {
             let item_1 = new BN(1)
             let item_3 = new BN(3)
-            await this.token.listItem(descriptions[1], true, 0, 1, { from: cron })
-            await this.token.listItem(descriptions[2], true, 0, 1, { from: cron })
-            await this.token.listItem(descriptions[3], true, 0, 1, { from: cron })
+            await this.token.listItem(descriptions[1], 1, 1, { from: cron })
+            await this.token.listItem(descriptions[2], 1, 1, { from: cron })
+            await this.token.listItem(descriptions[3], 1, 1, { from: cron })
             let pre_serial = await this.token.activeSerial()
             let pre_activeItems = await this.token.getActiveItems()
             await this.token.delistItem(item_1, { from: cron })
@@ -502,15 +485,13 @@ contract('MUBCToken: Item Shop Functionality', (accounts) => {
             )
         })
 
-        it('Profile returns description, fungibility, quantity, cost, active', async () => {
+        it('Profile returns description, quantity, cost, active', async () => {
             let res = await this.token.itemProfile(new BN(1))
             let _description = descriptions[0]
-            let _fungibility = false
             let _quantity = new BN(2)
             let _cost = new BN(10)
             let _active = true
             expect(_description).to.equal(res._description)
-            expect(_fungibility).to.equal(res._fungible)
             expect(_quantity).to.be.bignumber.equal(res._quantity)
             expect(_cost).to.be.bignumber.equal(res._cost)
             expect(_active).to.equal(res._active)

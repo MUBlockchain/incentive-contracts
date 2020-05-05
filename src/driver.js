@@ -1,11 +1,15 @@
 /**
- * Full web3JS wrapper for the MUBCItemShop contract
+ * Full web3JS wrapper for the MUBCItems contract
  */
-class MUBCItemShopDriver {
+class MUBCItemsDriver {
     
     constructor (_contract) {
         this.contract = _contract
         this.cron = this.contract.cron()
+    }
+
+    async register(uniqueID, name, executive) {
+        await this.contract.register(uniqueID, name, executive, { from: await this.cron })
     }
 
     async uuid(uniqueID) {
@@ -24,6 +28,8 @@ class MUBCItemShopDriver {
     
     async mint(_to, _quantity, _as) {
         let balances = {}
+        console.log('flag')
+        console.log(_to, _quantity, _as)
         balances.preBalance = (await this.contract.getBalance(_to)).toNumber()
         await this.contract.mint(_to, _quantity, _as, {from: await this.cron})
         balances.postBalance = (await this.contract.getBalance(_to)).toNumber()
@@ -40,6 +46,14 @@ class MUBCItemShopDriver {
         return profile
     }
     
+    async allProfile() {
+        let profiles = []
+        let serial = await this.uuidSerial()
+        for (let i = 1; i <= serial; i++)
+            profiles[i] = await this.profile(i)
+        return profiles
+    }
+
     async itemSerial() {
         return (await this.contract.itemSerial()).toNumber()
     }
@@ -86,6 +100,10 @@ class MUBCItemShopDriver {
         let ret = await this.contract.listItem(_description, _fungible, _quantity, _cost, {from: await this.cron})
         return ret.logs[0].args.itemID.toNumber()
     }
+
+    async delist(_serial) {
+        await this.contract.delistItem(_serial, {from: await this.cron})
+    }
 }
 
-module.exports = MUBCItemShopDriver
+module.exports = MUBCItemsDriver

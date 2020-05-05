@@ -45,26 +45,22 @@
     [
         {
             "description": "MUBC T-Shirts",
-            "fungible": false,
             "quantity": 50,
             "cost": 20
         },
         {
             "description": "Voice of Blockchain 2020 Ticket",
-            "fungible": false,
             "quantity": 3,
             "cost": 50
         },
         {
             "description": "Social Media Endorsement",
-            "fungible": true,
-            "quantity": 0,
+            "quantity": 10,
             "cost": 25
         },
         {
             "description": "All expenses paid ticket to Cincinnati Blockchain Implementations Conference 2020",
-            "fungible": true,
-            "quantity": 0,
+            "quantity": 10,
             "cost": 10
         }
     ]
