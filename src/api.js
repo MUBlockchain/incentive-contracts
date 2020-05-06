@@ -17,10 +17,7 @@ let verify = async (_token) => {
         idToken: _token,
         audience: process.env.OAUTH
     })
-    let payload = ticket.getPayload()
-    let userid = payload['sub']
-    console.log("payload: ", payload)
-    return userid
+    return payload = ticket.getPayload()
 }
 
 let openDB = async () => {
@@ -35,7 +32,7 @@ let openDB = async () => {
 let auth = async (ctx, next) => {
     let token = ctx.query.token
     try {
-        ctx.token = jwt.verify(token, process.env.JWT)
+        ctx.token = await verify(token)
         await next()
     } catch (err) {
         ctx.status = 403
