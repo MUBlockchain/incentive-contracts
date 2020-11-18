@@ -41,5 +41,8 @@
   "resolutions": {
     "eth-lib/keccakjs/sha3": "^1.2.3",
     "web3/web3-eth/web3-eth-accounts/scrypt.js": "^0.3.0"
+  },
+  "devDependencies": {
+    "husky": "^4.3.0"
   }
 }
