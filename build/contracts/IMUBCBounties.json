@@ -1,15 +1,15 @@
 {
   "contractName": "IMUBCBounties",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCBounties.sol\":\"IMUBCBounties\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/gilcrejp/incentive-contracts/contracts/IMUBCBounties.sol\":{\"keccak256\":\"0x1bdd1c1ed9d3ca8f5dd3e28a79507cd2466521698e27ee5e5befe355e4e761d6\",\"urls\":[\"bzz-raw://7a70500e2dcb91691233dc5715d0e48d595803155ab48a0f8a3da011931e6ed8\",\"dweb:/ipfs/QmT6oP5XNUP7T8xxM9tp5u7whvCC9xdeusVsvR5Pz9KGQT\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.1+commit.e6f7d5a4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/ianbrighton/Documents/Blockchain/GSN/incentive-contracts/contracts/IMUBCBounties.sol\":\"IMUBCBounties\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ianbrighton/Documents/Blockchain/GSN/incentive-contracts/contracts/IMUBCBounties.sol\":{\"keccak256\":\"0x1bdd1c1ed9d3ca8f5dd3e28a79507cd2466521698e27ee5e5befe355e4e761d6\",\"urls\":[\"bzz-raw://7a70500e2dcb91691233dc5715d0e48d595803155ab48a0f8a3da011931e6ed8\",\"dweb:/ipfs/QmT6oP5XNUP7T8xxM9tp5u7whvCC9xdeusVsvR5Pz9KGQT\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >= 0.4.0 < 0.7.0;\n\nabstract contract IMUBCBounties {\n    struct Bounty {\n        uint bountyID;\n        string description;\n        uint quantity;\n        uint reward;\n        bool active;\n        uint activeIndex;\n        mapping(uint => bool) awards;\n        uint[] recipients;\n    }\n}",
-  "sourcePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCBounties.sol",
+  "sourcePath": "/Users/ianbrighton/Documents/Blockchain/GSN/incentive-contracts/contracts/IMUBCBounties.sol",
   "ast": {
-    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCBounties.sol",
+    "absolutePath": "/Users/ianbrighton/Documents/Blockchain/GSN/incentive-contracts/contracts/IMUBCBounties.sol",
     "exportedSymbols": {
       "IMUBCBounties": [
         22
@@ -310,7 +310,7 @@
     "src": "0:303:0"
   },
   "legacyAST": {
-    "absolutePath": "/home/gilcrejp/incentive-contracts/contracts/IMUBCBounties.sol",
+    "absolutePath": "/Users/ianbrighton/Documents/Blockchain/GSN/incentive-contracts/contracts/IMUBCBounties.sol",
     "exportedSymbols": {
       "IMUBCBounties": [
         22
@@ -616,7 +616,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-02T19:52:51.713Z",
+  "updatedAt": "2020-11-18T19:59:59.698Z",
   "devdoc": {
     "methods": {}
   },

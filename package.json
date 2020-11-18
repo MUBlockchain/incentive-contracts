@@ -28,6 +28,8 @@
     "@truffle/hdwallet-provider": "^1.0.30",
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
+    "eth-block-tracker": "^4.4.3",
+    "ethers": "^5.0.19",
     "fs": "0.0.1-security",
     "google-auth-library": "^6.0.0",
     "jsonwebtoken": "^8.5.1",

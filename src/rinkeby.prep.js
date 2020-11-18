@@ -1,5 +1,6 @@
 require('dotenv').config()
 let TruffleContract = require("@truffle/contract")
+let ethers = require('ethers')
 let HDWalletProvider = require("@truffle/hdwallet-provider")
 let abi = require('../build/contracts/MUBCItems.json')
 let dummy_data = require('./dummy_data.json')
@@ -7,9 +8,10 @@ let dummy_data = require('./dummy_data.json')
 exports.provider = () => { return new HDWalletProvider(process.env.MNEMONIC, 'https://rinkeby.' + process.env.INFURA) }
 
 exports.instance = async (provider) => {
+    // let instance = ethers.Contract(module.exports.address(), abi, provider)
     let contract = TruffleContract(abi)
     contract.setProvider(provider)
-    let instance = await contract.at(module.exports.address())
+    let instance = await contract.at()
     return instance
 }
 
